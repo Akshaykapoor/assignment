@@ -112,7 +112,10 @@ while True:
             # gracefully kill the node process using LAST_PROCESS_PORT
             logger.info('Last added node server needs to be removed as RPM is less than threshold')
             # We kill the process with SIGKILL, as explained the method description above
-            kill_node_process(LAST_PROCESS_PORT.pop())
+            try:
+              kill_node_process(LAST_PROCESS_PORT.pop())
+            except IndexError as e:
+              logger.info('Pop from an empty list is not allowed: {0}'.format(e))
         else:
             logger.info('Only 1 instance of node server is running. We should not remove that')
             pass
