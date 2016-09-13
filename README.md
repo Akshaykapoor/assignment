@@ -69,24 +69,31 @@ For the questions:
 This assignment does the following,
 
 1. Create an initial config which does the following:
+
     a. Install required pip packages for installation (Installing npm and node.js
         is assumed to be installed by Chef/Saltstack or any other tool)
+        
         1. Install nginx (and change the config if required to include upstream)
+        
     b. Configure the system to install packages, clone the specified git repo
+    
     c. Run the node.js app from the cloned repo
 
 2. Once, the app is up and running, we simulate the number of requests per minute
+
     a. RPM (Request per minute) is simulated by generating a random integer between 90 and 110
+    
         1. Another approach of getting the total number of requests is by using status modules (vanialla nginx
            installations using any package manager such as yum, apt-get are not installed with this module) within nginx.
            To install this module, nginx has to be  compiled from source with the required flags.
            Using this approach, we can take samples from the status module every minute and get the difference
            from the last minute until now.
+           
         2. We could also parse the access.log file to get the number of requests per minute, but this seems quite
            expensive to be built on top, unless done natively by the server.
-
+           
     b. If RPM is > 100, we spin up a node.js application and add it's config to nginx and reload nginx
-
+    
     c. If RPM < 100 and the total number of instances is > 1, we remove the instance from the load balancer
        and the server process is also stopped.
 
