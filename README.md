@@ -102,10 +102,10 @@ There are multiple ways to achieve this,
 ##FAQ:
 
 Q - How do you keep track of the last node server started ?
-A - We do this with the help of a variable (LAST_PROCESS_PORT), which is a global variable
-    updated whenever a new server is added. Better approaches of having this information available
+A - We do this with the help of a list variable (LAST_PROCESS_PORT), which is a global list
+    updated with the port number whenever a new server is added. Better approaches of having this information available
     are also possible by having a datastore which could be persistent and shared across many modules.
-    Can also be done by writing to a file
+    Can also be done by writing to a file. 
 
 
 #########################################################################################
