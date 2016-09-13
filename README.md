@@ -1,10 +1,10 @@
-Assignment
+#Assignment
 
-Disclaimer:
+##Disclaimer:
 
 All of this has been battle tested on OS X 10.10.4 under a specific environemt. 
 
-This project includes the following file:
+**This project includes the following file:**
 
 1. initial_setup.py - Does initial setup of setting up environment
                       installing packages and running nginx
@@ -27,7 +27,7 @@ This project includes the following file:
 
 ------------------------------------------------------------------------------------------------------------
 
-Steps to do:
+##Steps to do:
 
 Make sure to run all of the above as root user. 
 This is because nginx needs to be run on port 80.
@@ -49,7 +49,7 @@ There are multiple ways to achieve this,
 
 ------------------------------------------------------------------------------------------------------------
 
-For the questions:
+##For the questions:
 
   - Start new nginx server on port 80
 	   - The best approach for doing such things is by using a configuration
@@ -69,7 +69,7 @@ For the questions:
 
 ------------------------------------------------------------------------------------------------------------
 
-This assignment does the following,
+**This assignment does the following,**
 
 1. Create an initial config which does the following:
 
@@ -101,7 +101,7 @@ This assignment does the following,
        and the server process is also stopped.
 
 ------------------------------------------------------------------------------------------------------------
-FAQ:
+##FAQ:
 
 Q - How do you keep track of the last node server started ?
 A - We do this with the help of a variable (LAST_PROCESS_PORT), which is a global variable
