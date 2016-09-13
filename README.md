@@ -9,15 +9,15 @@ This project includes the following file:
                       installing packages and running nginx
 2. configure_nginx.py - Starts nginx server on the default port
 
-3. nginx.conf - Config dile used for starting nginx on port 80
+3. nginx.conf - Config file used for starting nginx on port 80
                 (This task is essentially managed by Chef/Saltstack)
                 But in the scope of this assignment, we just supply an initial config
 
-4. log.py - Gloabl logger module to enable logging
+4. log.py - Global logger module to enable logging
 
 5. autoscale.py - Handles the autoscaling and stopping of server process
 
-6. initial-nginx.js - After starting nginx, we we do your initial phase, we use this file
+6. initial-nginx.js - After starting nginx, we do your initial phase, we use this file
 
 7. update-nginx.js - This is used when we are in the process of scaling up or down
                      (Allows to change nginx config dynamically)
@@ -27,6 +27,11 @@ This project includes the following file:
 #########################################################################################
 
 Steps to do:
+Make sure to run all of the above as root user. 
+This is because nginx needs to be run on port 80.
+There are multiple ways to achieve this,
+  - we can use iptables to forward all traffic on 80 to some less privilege port
+
 1. Have all the pre-req installed
      - pip
      - node.js v4.5.0
@@ -39,10 +44,6 @@ Steps to do:
 3. Run python initial_setup.py to clone from git and run node server, and add to LB
 
 4. Run python autoscale.py (Run in a while loop to simulate number of requests and scaling up and down)
-
-We run all of the code with root user. This is because nginx needs to be run on port 80.
-There are multiple ways to achieve this,
-  - we can use iptables to forward all traffic on 80 to some less privilege port
 
 #########################################################################################
 
@@ -81,7 +82,7 @@ This assignment does the following,
            To install this module, nginx has to be  compiled from source with the required flags.
            Using this approach, we can take samples from the status module every minute and get the difference
            from the last minute until now.
-        2. We could also parse the accesslog file to get the number of requests per minute, but this seems quite
+        2. We could also parse the access.log file to get the number of requests per minute, but this seems quite
            expensive to be built on top, unless done natively by the server.
 
     b. If RPM is > 100, we spin up a node.js application and add it's config to nginx and reload nginx
