@@ -25,7 +25,7 @@ This project includes the following file:
 
 8. reload.sh - Used to reload the nginx config
 
-#########################################################################################
+------------------------------------------------------------------------------------------------------------
 
 Steps to do:
 
@@ -47,7 +47,7 @@ There are multiple ways to achieve this,
 
 4. Run python autoscale.py (Run in a while loop to simulate number of requests and scaling up and down)
 
-#########################################################################################
+------------------------------------------------------------------------------------------------------------
 
 For the questions:
 
@@ -67,7 +67,7 @@ For the questions:
       - The above 2 tasks are managed in autoscale.py (which simulates a request
         per minute mechanism and run in while loop unless interrupted)
 
-#########################################################################################
+------------------------------------------------------------------------------------------------------------
 
 This assignment does the following,
 
@@ -100,7 +100,7 @@ This assignment does the following,
     c. If RPM < 100 and the total number of instances is > 1, we remove the instance from the load balancer
        and the server process is also stopped.
 
-#########################################################################################
+------------------------------------------------------------------------------------------------------------
 FAQ:
 
 Q - How do you keep track of the last node server started ?
