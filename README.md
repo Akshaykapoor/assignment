@@ -1,5 +1,8 @@
 Assignment
 
+Disclaimer:
+All of this has been battle tested on OS X 10.10.4 under a specific environemt. 
+
 This project includes the following file:
 
 1. initial_setup.py - Does initial setup of setting up environment
