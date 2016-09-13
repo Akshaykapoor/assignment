@@ -1,6 +1,7 @@
 Assignment
 
 This project includes the following file:
+
 1. initial_setup.py - Does initial setup of setting up environment
                       installing packages and running nginx
 2. configure_nginx.py - Starts nginx server on the default port
