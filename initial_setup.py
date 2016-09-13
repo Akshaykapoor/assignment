@@ -19,7 +19,9 @@ c. system has node.js installed v4.5.0
 4. Updates the nginx config and reloads it
 
 '''
-
+# This is defined so as to have a dir name for cloning from git
+# In the interest of scope, it has not been passed through a file.
+# typically should have been done through a yml/json file.
 APP_NAME = 'helloworld_app'
 LOGGER = log.enable_logging('root')
 
