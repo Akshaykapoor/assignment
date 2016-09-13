@@ -25,7 +25,6 @@ All of this has been battle tested on OS X 10.10.4 under a specific environemt.
 
 8. reload.sh - Used to reload the nginx config
 
-------------------------------------------------------------------------------------------------------------
 
 ##Steps to do:
 
@@ -47,7 +46,6 @@ There are multiple ways to achieve this,
 
 4. Run python autoscale.py (Run in a while loop to simulate number of requests and scaling up and down)
 
-------------------------------------------------------------------------------------------------------------
 
 ##For the questions:
 
@@ -67,7 +65,6 @@ There are multiple ways to achieve this,
       - The above 2 tasks are managed in autoscale.py (which simulates a request
         per minute mechanism and run in while loop unless interrupted)
 
-------------------------------------------------------------------------------------------------------------
 
 **This assignment does the following,**
 
@@ -100,7 +97,7 @@ There are multiple ways to achieve this,
     c. If RPM < 100 and the total number of instances is > 1, we remove the instance from the load balancer
        and the server process is also stopped.
 
-------------------------------------------------------------------------------------------------------------
+
 ##FAQ:
 
 Q - How do you keep track of the last node server started ?
@@ -111,7 +108,6 @@ A - We do this with the help of a variable (LAST_PROCESS_PORT), which is a globa
 
 
 #########################################################################################
-
-In the interest of time and scope of this assignment, a vagrant box is not supplied
-so as to simulate everything.
+In the interest of time and scope of this assignment, a vagrant box is not supplied with
+everything baked in it.
 #########################################################################################
