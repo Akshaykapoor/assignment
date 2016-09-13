@@ -62,6 +62,9 @@ There are multiple ways to achieve this,
   - Remove backend from LB and stop the last service when requests < 100
       - The above 2 tasks are managed in autoscale.py (which simulates a request
         per minute mechanism and run in while loop unless interrupted)
+        Maintaining node information in cluster (for scaling) is usually done by a cluster manager.
+        For the scope of this project, we implement a way to simulate the same. 
+
 
 
 **This assignment does the following,**
