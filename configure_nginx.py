@@ -36,7 +36,8 @@ def start_nginx():
     copyfile(sourcefilepath, destinationfilepath)
     command = 'nginx -c {0}'.format(destinationfilepath)
     logger.info('Command used for starting is: {0}'.format(command))
-    #p = subprocess.Popen(command, shell = True, stdin = None, stdout = None, stderr = None)
+    # we use subprocess.call, because we make this a blocking call,
+    # so as to wait for the result of the exceution
     try:
       p = subprocess.call([command], shell=True)
     except CalledProcesError as e:
