@@ -47,21 +47,16 @@ def create_git_repo():
 
 def reload_nginx_config():
     command = '/usr/local/bin/nginx -s reload'
-    #p = subprocess.check_output(command, shell=True)
     p = subprocess.call(['./reload.sh'])
-    #p = os.system(command)
     if not p:
         LOGGER.info('Nginx has been reloaded successfully...')
     else:
         LOGGER.debug('Nginx config could not be reloaded')
-    #print 'Output of p is: {0}'.format(p)
-    #print 'Nginx config has been reloaded'
 
 def register_in_nginx():
     command = 'node javascript/initial_nginx.js --app={0}'.format(APP_NAME)
     p = subprocess.check_output(command, shell=True)
     LOGGER.debug('Command usd for starting app is {0}'.format(command))
-    #time.sleep(15)
     reload_nginx_config()
 
 def initial_start_app():
@@ -72,7 +67,6 @@ def initial_start_app():
     LOGGER.info('Starting the node app')
     p = subprocess.Popen(command, shell = True, stdin = None, stdout = None, stderr = None)
     LOGGER.info('App is starting in background. Reload nginx config to see changes')
-    #p = subprocess.call(command)
     register_in_nginx()
 
 def main():
