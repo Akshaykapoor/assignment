@@ -1,6 +1,7 @@
 Assignment
 
 Disclaimer:
+
 All of this has been battle tested on OS X 10.10.4 under a specific environemt. 
 
 This project includes the following file:
@@ -27,6 +28,7 @@ This project includes the following file:
 #########################################################################################
 
 Steps to do:
+
 Make sure to run all of the above as root user. 
 This is because nginx needs to be run on port 80.
 There are multiple ways to achieve this,
@@ -48,6 +50,7 @@ There are multiple ways to achieve this,
 #########################################################################################
 
 For the questions:
+
   - Start new nginx server on port 80
 	   - The best approach for doing such things is by using a configuration
        management tool like Saltstack, Chef etc (depending upon the deployment)
