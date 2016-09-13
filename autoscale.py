@@ -12,7 +12,7 @@ the last spawned node instance if the requests per minute is less than 100
 '''
 
 BACKEND_SERVER_COUNT = 0
-LAST_PROCESS_PORT = 0
+LAST_PROCESS_PORT = []
 APP_NAME = 'helloworld_app'
 
 logger = log.enable_logging('autoscale')
@@ -30,7 +30,7 @@ def PickUnusedPort():
     addr, port = s.getsockname()
     s.close()
     global LAST_PROCESS_PORT
-    LAST_PROCESS_PORT = port
+    LAST_PROCESS_PORT.append(port)
     return port
 
 def start_app(port):
@@ -112,7 +112,7 @@ while True:
             # gracefully kill the node process using LAST_PROCESS_PORT
             logger.info('Last added node server needs to be removed as RPM is less than threshold')
             # We kill the process with SIGKILL, as explained the method description above
-            kill_node_process(LAST_PROCESS_PORT)
+            kill_node_process(LAST_PROCESS_PORT.pop())
         else:
             logger.info('Only 1 instance of node server is running. We should not remove that')
             pass
