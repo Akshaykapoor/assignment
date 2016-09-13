@@ -62,6 +62,9 @@ There are multiple ways to achieve this,
   - Remove backend from LB and stop the last service when requests < 100
       - The above 2 tasks are managed in autoscale.py (which simulates a request
         per minute mechanism and run in while loop unless interrupted)
+        Maintaining node information in cluster (for scaling) is usually done by a cluster manager.
+        For the scope of this project, we implement a way to simulate the same. 
+
 
 
 **This assignment does the following,**
@@ -99,10 +102,10 @@ There are multiple ways to achieve this,
 ##FAQ:
 
 Q - How do you keep track of the last node server started ?
-A - We do this with the help of a variable (LAST_PROCESS_PORT), which is a global variable
-    updated whenever a new server is added. Better approaches of having this information available
+A - We do this with the help of a list variable (LAST_PROCESS_PORT), which is a global list
+    updated with the port number whenever a new server is added. Better approaches of having this information available
     are also possible by having a datastore which could be persistent and shared across many modules.
-    Can also be done by writing to a file
+    Can also be done by writing to a file. 
 
 
 #########################################################################################
