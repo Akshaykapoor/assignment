@@ -42,7 +42,8 @@ I've used Virtualbox
 5. cd assignment --> So that you can execute the assignment
 6. sudo python configure_nginx.py (to run nginx on port 80)
 7. sudo python initial_setup.py (clones the node app and adds it to LB)
-      At this point you should be able to confirm both are working by
+      At this point you should be able to confirm both (node and nginx) are working by
+      either going to the browser on http://localhost if your guest and host ports are mapped
 
       `curl http://localhost (nginx load balancing the node app)`
       
