@@ -15,7 +15,7 @@ This is demonstrated on a mac OS X. Vanilla installations for mac, doesn't inclu
 
 Having a .pllist file is out of scope of this assignment. (As mostly this is usually handled very well by Configuration management tools)
 
-We use the default installation nginx file location. '/usr/local/etc/nginx/nginx.conf'
+We use the default installation nginx file location. '/etc/nginx/nginx.conf'
 
 Tested on (Mac OS X 10.10.4)
 
@@ -32,7 +32,7 @@ logger = log.enable_logging('nginx')
 
 def start_nginx():
     sourcefilepath = os.path.abspath('nginx.conf')
-    destinationfilepath = '/usr/local/etc/nginx/nginx.conf'
+    destinationfilepath = '/etc/nginx/nginx.conf'
     copyfile(sourcefilepath, destinationfilepath)
     command = 'nginx -c {0}'.format(destinationfilepath)
     logger.info('Command used for starting is: {0}'.format(command))
