@@ -114,6 +114,7 @@ There can be multiple ways to avoid running as root,
 ##FAQ:
 
 Q - How do you keep track of the last node server started ?
+
 A - We do this with the help of a list variable (LAST_PROCESS_PORT), which is a global list
     updated with the port number whenever a new server is added. Better approaches of having this information available
     are also possible by having a datastore which could be persistent and shared across many modules.
