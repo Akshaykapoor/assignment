@@ -35,21 +35,23 @@ This assumes you have vagrant installed and can spin up VMs and vagrant box to
 instantiate the same
 I've used Virtualbox
 
-1. git clone https://github.com/Akshaykapoor/assignment.git
-2. cd assignment/vagrant
-3. vagrant up
-4. vagrant ssh
-5. cd assignment --> So that you can execute the assignment
-6. sudo python configure_nginx.py (to run nginx on port 80)
-7. sudo python initial_setup.py (clones the node app and adds it to LB)
+1. vagrant box add precise64 https://files.hashicorp.com/precise64.box
+2. git clone https://github.com/Akshaykapoor/assignment.git
+3. cd assignment/vagrant
+4. vagrant up
+5. vagrant ssh
+6. cd assignment --> So that you can execute the assignment
+7. sudo python configure_nginx.py (to run nginx on port 80)
+8. sudo python initial_setup.py (clones the node app and adds it to LB)
       At this point you should be able to confirm both (node and nginx) are working by
       either going to the browser on http://localhost if your guest and host ports are mapped
+      or running the commands below from command line
 
       `curl http://localhost (nginx load balancing the node app)`
       
       `curl http://localhost:8080 (node server listening on )`
       
-8. sudo python autoscale.py
+9. sudo python autoscale.py
       This will run in an infinite loop simulating number of requests
       per minute. You can tailf setup.log to see what is happening at all times
 
