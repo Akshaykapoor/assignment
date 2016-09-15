@@ -55,7 +55,6 @@ def reload_nginx_config():
     We are using reload.sh file to reload nginx config.
     There were issues when trying to reload on OS X with subprocess call
     '''
-    command = '/usr/local/bin/nginx -s reload'
     p = subprocess.call(['./reload.sh'])
     if not p:
         logger.info('Nginx has been reloaded successfully...')
@@ -82,9 +81,11 @@ def kill_node_process(port):
     javascript code.
     So that some preventinve actions can be taken when
     killing the process or some process can be notified of the removal of the service
-    ps -ef | grep -v grep | grep "<port number>" | awk -F ' ' '{print $2}'
+    Another way to do this would be to store the pid retunred from subprocess and
+    stored in a datastore in order to remove the last running node.js service
+    ps -ef | grep -v grep | grep -v /bin/sh | grep "<port number>" | awk -F ' ' '{print $2}'
     '''
-    command = "ps -ef | grep -v grep | grep \"%s\" | awk -F ' ' '{print $2}'" % port
+    command = "ps -ef | grep -v grep | grep -v /bin/sh | grep \"%s\" | awk -F ' ' '{print $2}'" % port
     pid = subprocess.check_output(command, shell=True)
     logger.debug('PID to stop node server is: {0}'.format(pid))
     stop_cmd = 'kill -9 {0}'.format(pid)

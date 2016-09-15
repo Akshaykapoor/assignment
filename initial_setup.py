@@ -48,7 +48,6 @@ def create_git_repo():
     LOGGER.info('Fetching git clone done....')
 
 def reload_nginx_config():
-    command = '/usr/local/bin/nginx -s reload'
     p = subprocess.call(['./reload.sh'])
     if not p:
         LOGGER.info('Nginx has been reloaded successfully...')

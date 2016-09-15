@@ -1,5 +1,5 @@
 var NginxConfFile = require('nginx-conf').NginxConfFile;
-var nginx_conf_file = '/usr/local/etc/nginx/nginx.conf'
+var nginx_conf_file = '/etc/nginx/nginx.conf'
 // Using the deault config location of nginx file
 NginxConfFile.create(nginx_conf_file, function(err, conf) {
   if (err) {

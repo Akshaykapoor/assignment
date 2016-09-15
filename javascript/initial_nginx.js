@@ -4,12 +4,12 @@ When the first instance is instanciated, changes to the nginx config
 to relfect the name of the upstream servers is done in this file
 */
 
-var nginx_conf_file = '/usr/local/etc/nginx/nginx.conf'
+var nginx_conf_file = '/etc/nginx/nginx.conf'
 var NginxConfFile = require('nginx-conf').NginxConfFile;
 
 // Since we know the first node instance starts on 8080, we add this value to the variable
 // Ideallly all this is prefeable when done through Configuration Management tools
-var default_addr = '127.0.0.1:8080' //
+var default_addr = '127.0.0.1:8080'
 
 // Using the deault config location of nginx file
 NginxConfFile.create(nginx_conf_file, function(err, conf) {
