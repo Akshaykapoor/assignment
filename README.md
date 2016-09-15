@@ -53,7 +53,7 @@ I've used Virtualbox and ubuntu 12.04
       
 9. sudo python autoscale.py
       This will run in an infinite loop simulating number of requests
-      per minute. You can tailf setup.log to see what is happening at all times
+      per minute. You can do `tailf setup.log` to see what is happening
 
 The above is run as root user, because nginx needs to be run on port 80.
 There can be multiple ways to avoid running as root,
