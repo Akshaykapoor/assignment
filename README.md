@@ -32,8 +32,8 @@
 ##Steps to do:
 
 This assumes you have vagrant installed and can spin up VMs and vagrant box to
-instantiate the same
-I've used Virtualbox
+instantiate the same.
+I've used Virtualbox and ubuntu 12.04
 
 1. vagrant box add precise64 https://files.hashicorp.com/precise64.box
 2. git clone https://github.com/Akshaykapoor/assignment.git
