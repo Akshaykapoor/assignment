@@ -95,7 +95,7 @@ There can be multiple ways to avoid running as root,
 
     a. RPM (Request per minute) is simulated by generating a random integer between 90 and 110
 
-        1. Another approach of getting the total number of requests is by using status modules (vanialla nginx
+        1. Another approach of getting the total number of requests is by using ngx_http_stub_status_module (vanialla nginx
            installations using any package manager such as yum, apt-get are not installed with this module) within nginx.
            To install this module, nginx has to be  compiled from source with the required flags.
            Using this approach, we can take samples from the status module every minute and get the difference
@@ -103,6 +103,8 @@ There can be multiple ways to avoid running as root,
 
         2. We could also parse the access.log file to get the number of requests per minute, but this seems quite
            expensive to be built on top, unless done natively by the server.
+           
+        3. Or can have that information be feeded to this code from some monitoring solution
 
     b. If RPM is > 100, we spin up a node.js application and add it's config to nginx and reload nginx
 
