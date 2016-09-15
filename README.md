@@ -1,6 +1,6 @@
 #Assignment
 
-####Disclaimer: All of this has been battle tested on OS X 10.10.4 under a specific environemt. 
+####Disclaimer: All of this has been battle tested on OS X 10.10.4 under a specific environemt.
 
 **This project includes the following file:**
 
@@ -23,27 +23,34 @@
 
 8. reload.sh - Used to reload the nginx config
 
+9. Vagrantfile - Used for baking your environment
+
+10. setup.sh - Used by vagrant to setup the environment. 
+
 
 ##Steps to do:
 
-Make sure to run all of the above as root user. 
-This is because nginx needs to be run on port 80.
-There are multiple ways to achieve this,
+This assumes you have vagrant installed and can spin up VMs with any hypervisor
+I've used Virtualbox and with ubuntu precise64 image
+
+1. git clone https://github.com/Akshaykapoor/assignment.git
+2. cd assignment/vagrant
+3. vagrant init precise64
+4. vagrant up
+5. vagrant ssh
+6. cd assignment --> So that you can execute the assignment
+7. sudo python configure_nginx.py (to run nginx on port 80)
+8. sudo python initial_setup.py (clones the node app and adds it to LB)
+      At this point you should be able to confirm both are working by
+      curl http://localhost (nginx load balancing the node app)
+      curl http://localhost:8080 (node server listening on )
+9. sudo python autoscale.py
+      This will run in an infinite loop simulating number of requests
+      per minute. You can tailf setup.log to see what is happening at all times
+
+The above is run as root user, because nginx needs to be run on port 80.
+There can be multiple ways to avoid running as root,
   - we can use iptables to forward all traffic on 80 to some less privilege port
-
-1. Have all the pre-req installed
-     - pip
-     - node.js v4.5.0
-     - npm
-     - npm install yargs
-     - npm install nginx-conf
-
-2. Run configure_nginx.py (to run nginx on port 80)
-
-3. Run python initial_setup.py to clone from git and run node server, and add to LB
-
-4. Run python autoscale.py (Run in a while loop to simulate number of requests and scaling up and down)
-
 
 ##For the questions:
 
@@ -51,9 +58,9 @@ There are multiple ways to achieve this,
 	   - The best approach for doing such things is by using a configuration
        management tool like Saltstack, Chef etc (depending upon the deployment)
      - Done in configure_nginx.py
-  - create node.js environment
-	   - This involves making sure app packages are installed for node.js and
-       node.js itself is installed. Again better of to be done with Saltstack/Chef
+  - create node.js environment (Most of the environment setup is done in the shell script for Vagrant)
+	   - Again better of to be done with Saltstack/Chef. We do install a python package
+       specific for one of the task from the code itself.
      - Done in initial_setup.py
   - pull git repo and start server
      - Also done in initial_setup.py (This is because this is an 1 time task)
@@ -63,41 +70,36 @@ There are multiple ways to achieve this,
       - The above 2 tasks are managed in autoscale.py (which simulates a request
         per minute mechanism and run in while loop unless interrupted)
         Maintaining node information in cluster (for scaling) is usually done by a cluster manager.
-        For the scope of this project, we implement a way to simulate the same. 
-
+        For the scope of this project, we implement a way to simulate the same.
 
 
 **This assignment does the following,**
 
-1. Create an initial config which does the following:
+1. Create an initial config which does the following: (Update: Added a vagrant file which handles
+   all dependencies for setting up the environment)
 
-    a. Install required pip packages for installation (Installing npm and node.js
-        is assumed to be installed by Chef/Saltstack or any other tool)
-        
-        1. Install nginx (and change the config if required to include upstream)
-        
-    b. Configure the system to install packages, clone the specified git repo
-    
-    c. Run the node.js app from the cloned repo
+    a. Setup the system environment with packages dependencies for running the assignment,
+       clone the specified git repo
+
+    b. Run the node.js app from the cloned repo
 
 2. Once, the app is up and running, we simulate the number of requests per minute
 
     a. RPM (Request per minute) is simulated by generating a random integer between 90 and 110
-    
+
         1. Another approach of getting the total number of requests is by using status modules (vanialla nginx
            installations using any package manager such as yum, apt-get are not installed with this module) within nginx.
            To install this module, nginx has to be  compiled from source with the required flags.
            Using this approach, we can take samples from the status module every minute and get the difference
            from the last minute until now.
-           
+
         2. We could also parse the access.log file to get the number of requests per minute, but this seems quite
            expensive to be built on top, unless done natively by the server.
-           
+
     b. If RPM is > 100, we spin up a node.js application and add it's config to nginx and reload nginx
-    
+
     c. If RPM < 100 and the total number of instances is > 1, we remove the instance from the load balancer
        and the server process is also stopped.
-
 
 ##FAQ:
 
@@ -105,10 +107,4 @@ Q - How do you keep track of the last node server started ?
 A - We do this with the help of a list variable (LAST_PROCESS_PORT), which is a global list
     updated with the port number whenever a new server is added. Better approaches of having this information available
     are also possible by having a datastore which could be persistent and shared across many modules.
-    Can also be done by writing to a file. 
-
-
-#########################################################################################
-In the interest of time and scope of this assignment, a vagrant box is not supplied with
-everything baked in it.
-#########################################################################################
+    Can also be done by writing to a file.
