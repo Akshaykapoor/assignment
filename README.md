@@ -1,6 +1,7 @@
 #Assignment
 
-####Disclaimer: All of this has been battle tested on OS X 10.10.4 under a specific environemt.
+####Disclaimer: All of this has been battle tested on OS X 10.10.4 under a specific environment.
+##(UPDATE): This has now been ported to run on ubuntu (Vagrantfile to the rescue !)
 
 **This project includes the following file:**
 
@@ -25,13 +26,14 @@
 
 9. Vagrantfile - Used for baking your environment
 
-10. setup.sh - Used by vagrant to setup the environment. 
+10. setup.sh - Used by vagrant to setup the environment.
 
 
 ##Steps to do:
 
-This assumes you have vagrant installed and can spin up VMs with any hypervisor
-I've used Virtualbox and with ubuntu precise64 image
+This assumes you have vagrant installed and can spin up VMs and vagrant box to
+instantiate the same
+I've used Virtualbox
 
 1. git clone https://github.com/Akshaykapoor/assignment.git
 2. cd assignment/vagrant
